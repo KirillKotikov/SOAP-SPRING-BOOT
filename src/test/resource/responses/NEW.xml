@@ -1,0 +1,14 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <NotificationResponse
+                xmlns="http://kotikov.ru/api">
+            <sender xmlns="">Kotikov</sender>
+            <recipient xmlns="">Test</recipient>
+            <notificationId xmlns="">1123</notificationId>
+            <result xmlns="">
+                <resultCode>OK</resultCode>
+            </result>
+        </NotificationResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

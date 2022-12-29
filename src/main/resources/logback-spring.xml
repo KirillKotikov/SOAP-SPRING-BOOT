@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_DIRECTORY" value="/var/log"/>
+    <property name="LOG_PATTERN" value="%d{yyyy-dd-MM HH:mm:ss.SSS} [%-16thread] %-5level %-35.35logger{30} - %msg%n"/>
+
+    <springProperty name="LOG_FILE" source="logging.file.file-name" defaultValue="notification-incident"/>
+    <springProperty name="LOG_MAX_FILE_SIZE" source="logging.file.max-size" defaultValue="10MB"/>
+    <springProperty name="LOG_MAX_HISTORY" source="logging.file.max-history" defaultValue="30"/>
+    <springProperty name="LOG_TOTAL_SIZE_CAP" source="logging.file.total-size" defaultValue="1GB"/>
+
+    <springProfile name="prod">
+        <logger name="httpclient" level="WARN"/>
+        <logger name="org.apache" level="WARN"/>
+        <logger name="org.hibernate" level="WARN"/>
+        <logger name="org.quartz" level="WARN"/>
+        <logger name="org.springframework" level="WARN"/>
+
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIRECTORY}/${LOG_FILE}.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_DIRECTORY}/${LOG_FILE}.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+                <maxFileSize>${LOG_MAX_FILE_SIZE}</maxFileSize>
+                <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+                <totalSizeCap>${LOG_TOTAL_SIZE_CAP}</totalSizeCap>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{yyyy-dd-MM HH:mm:ss.SSS} [%-16thread] %-5level %-35.35logger{30} - %msg%n</pattern>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="test">
+        <logger name="httpclient" level="WARN"/>
+        <logger name="org.apache" level="WARN"/>
+        <logger name="org.hibernate" level="WARN"/>
+        <logger name="org.quartz" level="WARN"/>
+        <logger name="org.springframework" level="INFO"/>
+
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>logs/${LOG_FILE}.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>logs/${LOG_FILE}.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+                <maxFileSize>${LOG_MAX_FILE_SIZE}</maxFileSize>
+                <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+                <totalSizeCap>${LOG_TOTAL_SIZE_CAP}</totalSizeCap>
+                <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            </rollingPolicy>
+
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+</configuration>

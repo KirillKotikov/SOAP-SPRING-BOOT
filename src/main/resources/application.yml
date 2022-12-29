@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: test
+  main:
+    banner-mode: off
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+  jetty:
+    max-http-form-post-size: 409600
+
+management:
+  endpoints:
+    web:
+      base-path: /api/v1
+      exposure:
+        include: health, prometheus, info, metrics
+  metrics:
+    export:
+      prometheus:
+        enabled: true

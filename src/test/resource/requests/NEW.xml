@@ -1,0 +1,16 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+    <s:Header/>
+    <s:Body>
+        <NotificationRequest xmlns="http://kotikov.ru/api">
+            <sender xmlns="">Test</sender>
+            <notificationId xmlns="">1123</notificationId>
+            <incidentId xmlns="">1</incidentId>
+            <notificationCode xmlns="">NEW</notificationCode>
+            <startDate>2022-12-21T18:32:16+07:00</startDate>
+            <changeDate>2022-12-21T18:32:16+07:00</changeDate>
+            <deadLine>2022-12-23T00:00:00+07:00</deadLine>
+            <incidentStatus xmlns="">ACTIVE</incidentStatus>
+            <incidentDescription>Services: Internet</incidentDescription>
+        </NotificationRequest>
+    </s:Body>
+</s:Envelope>

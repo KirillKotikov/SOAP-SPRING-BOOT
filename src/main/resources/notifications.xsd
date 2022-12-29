@@ -1,0 +1,57 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://kotikov.ru/api"
+        targetNamespace="http://kotikov.ru/api" elementFormDefault="qualified">
+
+    <element name="NotificationRequest">
+        <complexType>
+            <sequence>
+                <element name="sender" type="string"/>
+                <element name="notificationId" type="long"/>
+                <element name="incidentId" type="long"/>
+                <element name="notificationCode" type="string"/>
+                <element name="startDate" type="dateTime"/>
+                <element name="changeDate" type="dateTime"/>
+                <element name="deadLine" type="dateTime"/>
+                <element name="endDate" type="dateTime"/>
+                <element name="incidentStatus" type="tns:IncidentStatus"/>
+                <element name="comment" type="string"/>
+                <element name="incidentDescription" type="string"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="NotificationResponse">
+        <complexType>
+            <sequence>
+                <element name="sender" type="string"/>
+                <element name="recipient" type="string"/>
+                <element name="notificationId" type="long"/>
+                <element name="result" type="tns:Result"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="ConfirmationRequest">
+        <complexType>
+            <sequence>
+                <element name="sender" type="string"/>
+                <element name="recipient" type="string"/>
+                <element name="notificationId" type="long"/>
+                <element name="result" type="tns:Result"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <simpleType name="IncidentStatus">
+        <restriction base="string">
+            <enumeration value="ACTIVE"/>
+            <enumeration value="CLOSED"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="Result">
+        <sequence>
+            <element name="resultCode" type="string"/>
+            <element name="resultText" type="string"/>
+        </sequence>
+    </complexType>
+</schema>
