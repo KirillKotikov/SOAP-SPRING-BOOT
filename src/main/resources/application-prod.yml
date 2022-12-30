@@ -3,7 +3,7 @@ server:
 
 management:
   server:
-    port: ${PORT}
+    port: ${MANAGEMENT_PORT}
 
 logging:
   group:
@@ -24,33 +24,5 @@ spring:
     username: ${INCIDENT_DATASOURCE_USERNAME}
     password: ${INCIDENT_DATASOURCE_PASSWORD}
 
-#event-supplier:
-#  sender: ${SENDER}
-#  mediation:
-#      endpoint: ${MEDIATION_ENDPOINT}
-#      timeout-in-seconds: ${MEDIATION_PUBLISH_REQUEST_TIMEOUT}
-#      batch-size: ${MEDIATION_PUBLISH_BATCH_SIZE}
-#      max-in-queue-before-send-in-seconds: ${BATCHING_MAX_IN_QUEUE_DELAY_IN_SECONDS}
-#  rabbitmq:
-#    # A flag that indicates whether an event should be enclosed in a specific stucture
-#    # If a flag is set to true then sceptor wrapper is used as default
-#    # Feel free to define a bean of type EventSupplier<T> to implement ur desired output message format
-#    supply-wrapped: ${SUPPLY_WRAPPED}
-#    host: ${RABBITMQ_HOST}
-#    port: ${RABBITMQ_PORT}
-#    virtual-host: ${RABBITMQ_VHOST}
-#    username: ${RABBITMQ_USERNAME}
-#    password: ${RABBITMQ_PASSWORD}
-#    exchange: ${RABBITMQ_EXCHANGE}
-#    routing-key: ${RABBITMQ_ROUTING_KEY}
-#    max-queue-size: ${MAX_QUEUE_SIZE}
-#    max-throughput: ${MAX_THROUGHPUT}
-#    supply-attempt-delay-in-seconds: ${SUPPLY_ATTEMPT_DELAY_IN_SECONDS}
-#    supply-attempt-delay-scale-factor: ${SUPPLY_ATTEMPT_DELAY_SCALE_FACTOR}
-#
-#consumer:
-#  data-poll-interval: ${CONSUMER_DATAPOLL_INTERVAL}
-#  reconnect-delay: ${CONSUMER_RECCONECT_DELAY}
-#
 sender:
   senderName: ${SENDER_NAME}

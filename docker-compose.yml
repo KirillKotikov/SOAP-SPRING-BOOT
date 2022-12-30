@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+
+  technograd-event-supplier:
+    ports:
+      - 8080:8080
+      - 8081:8081
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: soap-spring-boot-image:1.0
+    restart: always
+    container_name: soap-spring-boot
+    environment:
+      - PORT=8080
+      - MANAGEMENT_PORT=8081
+      - LOG_GROUP_SENDER=ru.kotikov.soapspringboot
+      - LOG_SENDER_LEVEL=DEBUG
+      - LOG_FILE_NAME=soap-spring-boot
+      - LOG_TOTAL_SIZE_CAP=1GB
+      - LOG_MAX_FILE_SIZE=10MB
+      - LOG_MAX_HISTORY=90
+
+      - INCIDENT_DATASOURCE_URL=jdbc:h2:mem:dbname
+      - INCIDENT_DATASOURCE_USERNAME=
+      - INCIDENT_DATASOURCE_PASSWORD=
+      - SENDER_NAME=Kotikov
+    volumes:
+      - ./logs:/var/log
+      - ./data:/service

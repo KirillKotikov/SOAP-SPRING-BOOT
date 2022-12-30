@@ -24,13 +24,7 @@ public class NotificationEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "NotificationRequest")
     public NotificationResponse receiveNotification(@RequestPayload NotificationRequest request)
             throws SoapClientFaultException, SoapServerFaultException {
-        try{
             return service.process(request);
-        } catch (SoapClientFaultException e) {
-            throw new SoapClientFaultException(e.getMessage());
-        } catch (Exception e) {
-            throw new SoapServerFaultException(e.getMessage());
-        }
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "ConfirmationRequest")
